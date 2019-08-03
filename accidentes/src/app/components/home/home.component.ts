@@ -9,8 +9,6 @@ import { AccidentService } from 'src/app/services/AccidentService';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  datayear: any;
-  labelyear: any;
   showinfo: boolean;
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -23,18 +21,30 @@ export class HomeComponent implements OnInit {
     }
   };
 
-
-  public barChartLabelsYear: Label[] = ['marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  public barChartType: ChartType = 'line';
+  //**GRAFICA DE BARRAS 1  */
+  public barChartLabelMonth: Label[] = ['marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [pluginDataLabels];
   public barChartDataYear: ChartDataSets[] = [];
- public barChartColors = [
+  public barChartColors = [
     {
       backgroundColor: ['rgba(25,10,156,0.3)'],
     },
   ];
 
+  //**GRAFICA DE BARRAS 2  */
+  public barChartLabel2: Label[] = [];
+  public barChartType2: ChartType = 'line';
+  public barChartData2: ChartDataSets[] = [];
+  public barChartColors2 = [
+    {
+      backgroundColor: ['rgba(136,109,15,0.3)'],
+    },
+  ];
+
+
+  //**GRAFICA DE TORTA 2  DE ACCIDENTE REPORTADO O NO */
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
@@ -47,7 +57,7 @@ export class HomeComponent implements OnInit {
       }
     }
   };
-  public pieChartLabels: Label[] = ['Reportado','No reportado'];
+  public pieChartLabels: Label[] = ['Reportado', 'No reportado'];
   public pieChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
@@ -59,7 +69,7 @@ export class HomeComponent implements OnInit {
   ];
 
 
-  public pieChartLabels2: Label[] = ['Trafico', 'Crimen'];
+  public pieChartLabels2: Label[] = [];
   public pieChartData2: number[] = [];
   public pieChartType2: ChartType = 'pie';
   public pieChartLegend2 = true;
@@ -112,23 +122,45 @@ export class HomeComponent implements OnInit {
         data.push(element.total);
       });
       this.pieChartData = data;
-      this.showinfo = true;
+      this.county();
     })
   }
 
 
-  graphic4() {
-    this.accidentService.getPoliceReport().subscribe(res => {
+  county() {
+    this.accidentService.getcountyName().subscribe(res => {
+      let valor: any;
+      valor = res;
       let data: Array<number> = [];
-      data.push(res[0].IS_TRAFFIC);
-      data.push(res[0].IS_CRIME);
-      this.pieChartData2 = data
+      valor.forEach(element => {
+        data.push(element.total);
+        this.pieChartLabels2.push(element._id);
+      });
+      this.pieChartData2 = data;
+      this.numCars();
     })
+  }
 
+  numCars() {
+    this.accidentService.getnumVechicle().subscribe(res => {
+      let valor: any;
+      valor = res;
+      let data: Array<number> = [];
+      valor.forEach(element => {
+        data.push(element.total);
+        this.barChartLabel2.push(element._id);
+      });
+      this.barChartData2 = [{ data: data, label: "vehiculos involucrados" },]
+      this.showinfo = true;
+    });
   }
 
   public randomize(): void {
     this.barChartType = this.barChartType === 'bar' ? 'line' : 'bar';
+  }
+
+  public randomize2(): void {
+    this.barChartType2 = this.barChartType2 === 'bar' ? 'line' : 'bar';
   }
 
   ngOnInit() {

@@ -8,12 +8,12 @@ import { HttpClient } from '@angular/common/http';
 export class AccidentService {
     constructor(private http: HttpClient) { }
   
-    public getCategory(): Observable<JSON> {
-        return this.http.get<JSON>(`http://localhost:3000/category`);
+    public getcountyName(): Observable<JSON> {
+        return this.http.get<JSON>(`http://localhost:3000/countyName`);
     }
 
-    public getOfensive(): Observable<JSON> {
-        return this.http.get<JSON>(`http://localhost:3000/ofensive`);
+    public getnumVechicle(): Observable<JSON> {
+        return this.http.get<JSON>(`http://localhost:3000/numVechicle`);
     }
     
     public getPoliceReport(): Observable<JSON> {

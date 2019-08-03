@@ -6,9 +6,11 @@
     <br>
     <br>
     <h1 style="text-align: center"><strong><b>Analisis de los Accidentes de transito en Estados unidos en el 2016</b></strong></h1>
+
     <br>
     <br>
     <br>
+
 
     <div class="container col-md-10">
         <div>
@@ -26,14 +28,15 @@
 
     <br>
     <br>
-
-    <div class="container col-md-8">
+    <br>
+    <br>
+    <div class="container col-md-12">
         <div>
-            <h2 style="text-align: center"><strong><b>Numero de crimenes por tipo</b></strong></h2>
+            <h2 style="text-align: center"><strong><b>Numero de accidentes por Condado</b></strong></h2>
             <div>
                 <div>
                     <div class="chart">
-                        <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartOptions" [legend]="pieChartLegend" [colors]="pieChartColors">
+                        <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartOptions" [legend]="pieChartLegend">
                     </canvas>
                     </div>
                 </div>
@@ -49,7 +52,7 @@
         <div>
             <h2 style="text-align: center"><strong><b>Numero de Accidentes por Mes</b></strong></h2>
             <div style="display: block">
-                <canvas baseChart [datasets]="barChartDataYear" [labels]="barChartLabelsYear" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors">
+                <canvas baseChart [datasets]="barChartDataYear" [labels]="barChartLabelMonth" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors">
         </canvas>
             </div>
             <button mat-button mat-raised-button color="primary" (click)="randomize()">Actualizar vista</button>
@@ -67,6 +70,21 @@
                 <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType">
             </canvas>
             </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container col-md-10">
+        <div>
+            <h2 style="text-align: center"><strong><b>vehiculos Involucrados</b></strong></h2>
+            <div style="display: block">
+                <canvas baseChart [datasets]="barChartData2" [labels]="barChartLabel2" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType2" [colors]="barChartColors2">
+        </canvas>
+            </div>
+            <button mat-button mat-raised-button color="primary" (click)="randomize2()">Actualizar vista</button>
         </div>
     </div>
 </div>
