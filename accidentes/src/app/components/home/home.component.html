@@ -1,0 +1,73 @@
+<mat-spinner class="spinner" *ngIf="!showinfo"></mat-spinner>
+<br>
+<br>
+<div *ngIf="showinfo" class="container">
+    <br>
+    <br>
+    <br>
+    <h1 style="text-align: center"><strong><b>Analisis de los Accidentes de transito en Estados unidos en el 2016</b></strong></h1>
+    <br>
+    <br>
+    <br>
+
+    <div class="container col-md-10">
+        <div>
+            <h2 style="text-align: center"><strong><b>Accidentes reportados a la policia</b></strong></h2>
+            <div>
+                <div>
+                    <div class="chart">
+                        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartOptions" [legend]="pieChartLegend">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container col-md-8">
+        <div>
+            <h2 style="text-align: center"><strong><b>Numero de crimenes por tipo</b></strong></h2>
+            <div>
+                <div>
+                    <div class="chart">
+                        <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartOptions" [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container col-md-10">
+        <div>
+            <h2 style="text-align: center"><strong><b>Numero de Accidentes por Mes</b></strong></h2>
+            <div style="display: block">
+                <canvas baseChart [datasets]="barChartDataYear" [labels]="barChartLabelsYear" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors">
+        </canvas>
+            </div>
+            <button mat-button mat-raised-button color="primary" (click)="randomize()">Actualizar vista</button>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container col-md-10">
+        <h2 style="text-align: center"><strong><b>Accidentes por dia de la semana</b></strong></h2>
+        <div>
+            <div style="display: block">
+                <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType">
+            </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
